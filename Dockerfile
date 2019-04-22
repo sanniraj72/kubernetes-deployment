@@ -3,5 +3,5 @@ RUN mkdir app/ && cd app/
 WORKDIR app/
 COPY . .
 RUN go build main.go
-CMD [./main]
+CMD ["./main"]
 EXPOSE 8085
