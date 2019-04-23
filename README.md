@@ -1,6 +1,6 @@
 # Kubernetes Deployment Example
 
-### This exercise is all about Kubernetes deployment. Here we have go api service deployment step by step.
+## This exercise is all about Kubernetes deployment. Here we have go api service deployment step by step.
 
 **1.** Create an api service using GoLang. Here we have main.go
 
@@ -78,5 +78,30 @@
            api-deployment-5f9c9cfb4d-nnrmp   1/1     Running   0          25m
          
          
-         
-         
+  ### Scale-up and Scale-down
+  
+   Scale-up and scale-down can happen in two ways:
+    
+   a. ```kubectl edit deployments <deployment-name>```
+   
+   - Here deployment-name is same as given in deployment.yaml file
+        
+   b. ``` kubectl scale <deployment-name> --replicas=<number-of-replica> ```
+   
+   - Here deployment-name we can get using ```kubectl get all```
+        
+        ```
+        $ kubectl get all
+        NAME                                  READY   STATUS    RESTARTS   AGE
+        pod/api-deployment-869cb9548c-bxssz   1/1     Running   0          29m
+        pod/api-deployment-869cb9548c-nvz82   1/1     Running   0          29m
+
+        NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+        service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   11d
+
+        NAME                             READY   UP-TO-DATE   AVAILABLE   AGE 
+        deployment.apps/api-deployment   2/2     2            2           29m
+
+        NAME                                        DESIRED   CURRENT   READY   AGE
+        replicaset.apps/api-deployment-869cb9548c   2         2         2       29m
+        ```
